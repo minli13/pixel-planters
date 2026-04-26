@@ -34,7 +34,6 @@ const Level = () => {
   function handleChange(updated) {
     if (!Array.isArray(updated)) return;
     setUserBlocks(updated);
-    console.log(updated.filter(Boolean).join(' ').trim());
     setAssembledCode(updated.filter(Boolean).join(' ').trim());
   }
 
