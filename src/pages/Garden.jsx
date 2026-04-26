@@ -8,10 +8,25 @@ import DialogIntroNew from '../assets/DialogueIntroNewUser.png'
 import DirtPatch from '../assets/DirtPatch.png'
 import '../styles/styles.css'
 import '../styles/garden.css'
+import FullBloom from '../assets/RedPlantGrowth/RedPlant.png';
+import MediumBloom from '../assets/RedPlantGrowth/SmallRedPlant.png';
+import SmallBloom from '../assets/RedPlantGrowth/sproutRedPlant.png';
 
+const FLOWER_STAGES = {
+  0: null,        // no levels done, just dirt
+  1: SmallBloom,        // level 1 done
+  2: MediumBloom,      // level 2 done
+  3: FullBloom,      // all 3 done
+};
 
 const Garden = () => {
-    const { gameState, setGameState, saveToSlot, activeSlot } = useGarden();
+    const { slots, gameState, setGameState, saveToSlot, activeSlot } = useGarden();
+    const currentSave = slots[activeSlot];
+
+    function getFlowerStage(section) {
+        const completed = Object.values(currentSave.sections[section].levels).filter(l => l.completed).length; // count completed levels
+        return FLOWER_STAGES[completed];
+    }
     
     function completeLevel(section, level) {
         const updatedSections = {
@@ -79,18 +94,25 @@ const Garden = () => {
 
                 <div className='dirt-patches-container'>
                     {/*dirt patches*/}
-                    <Link to="/levels/1" className='dirt-container'>
-                        <img
-                            src= {DirtPatch}
-                            alt = "section 1"/>
-                        <div className='section-number'>1</div>
-                    </Link>
-                    <Link to="/levels/2" className='dirt-container'>
-                        <img
-                        src= {DirtPatch}
-                        alt = "section 2"/>
-                        <div className='section-number'>2</div>
-                    </Link>
+                    {[1, 2].map(section => (
+                        <Link key={section} to={`/levels/${section}`} className='dirt-container'>
+                            <div style={{ position: 'relative', display: 'inline-block'}}>
+                                <img
+                                    src= {DirtPatch}
+                                    alt = {`section ${section}`}
+                                />
+                                {getFlowerStage(section) && (
+                                    <img
+                                        src= {getFlowerStage(section)}
+                                        alt = {`section ${section} flower`}
+                                        style={{ position: 'absolute', top: '0', left: '0', width: '110px', height: 'auto'}}
+                                    />
+                                )}
+                            </div>
+                            <div className='section-number'>{section}</div> 
+
+                        </Link>
+                    ))}
                 </div>
             </div>
         </div>

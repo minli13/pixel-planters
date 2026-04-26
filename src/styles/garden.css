@@ -39,7 +39,7 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 22px;
+    padding: 35px;
     border: 2px dashed var(--light-green);
     border-radius: 8px;
 }
@@ -63,10 +63,11 @@
 
 .dirt-patches-container .section-number {
     position: absolute;
-    top: 50%;
+    top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 44px;
     color: #FFF;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
