@@ -109,22 +109,10 @@ const Garden = () => {
                                     />
                                 )}
                             </div>
-                            {/* <div className='section-number'>{section}</div> */}
-                        </Link>
+                            <div className='section-number'>{section}</div> 
 
+                        </Link>
                     ))}
-                    {/* <Link to="/levels/1" className='dirt-container'>
-                        <img
-                            src= {DirtPatch}
-                            alt = "section 1"/>
-                        <div className='section-number'>1</div>
-                    </Link>
-                    <Link to="/levels/2" className='dirt-container'>
-                        <img
-                        src= {DirtPatch}
-                        alt = "section 2"/>
-                        <div className='section-number'>2</div>
-                    </Link> */}
                 </div>
             </div>
         </div>
