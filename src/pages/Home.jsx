@@ -10,10 +10,10 @@ import './styles.css'
 const Home = () => { //Homepage - play button
 
   return (
-    <div>
+    <div className = "background-image-container">
       <h1>Pixel Planters</h1>
       <h2>Grow your coding skills!</h2>
-      <div className = "background-image-container">
+      <div>
         <Link to="/gameSlots"> 
           <img
             src= {Play}
@@ -25,11 +25,6 @@ const Home = () => { //Homepage - play button
             alt = "Play"
             />
         </Link>
-      </div>
-      <div>
-        <button>
-          Options
-        </button>
       </div>
     </div>
   )

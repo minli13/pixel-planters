@@ -19,7 +19,11 @@ const Levels = () => {
     }
 
     return (
-        <div>    
+        <div className = "background-image-container"> {/*title and description*/}
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center'
+        }}>
             {/*home button*/}
             <Link to="/"> 
                 <img
@@ -27,35 +31,32 @@ const Levels = () => {
                     style={{
                         height:68,
                         width:68,
-                        display: 'flex',
-                        alignItems: 'start'
+                        display: 'start',
                     }}
                     alt = "Home"
                 />
             </Link>
-
-            <div className = "background-image-container"> {/*title and description*/}
-                <h1>Section {section}</h1>
-                {[1, 2, 3].map(level => (
-                    <button
-                        key={level}
-                        onClick={() => !isLocked(level) && navigate(`/level/${section}/${level}`)}
-                        disabled={isLocked(level)}
-                        className='level-btn'
-                    >
-                        Level {level}
-                        {gameState.sections[section].levels[level].completed && ' (Completed)'}
-                    </button>
-                ))}
-                <img
-                    src= {StringIntro}
-                    style={{
-                        display: 'flex',
-                        alignItems: 'start'
-                    }}
-                    alt = "Home"
-                />
-            </div>
+            <h1>Section {section}</h1>
+        </div>
+            {[1, 2, 3].map(level => (
+                <button
+                    key={level}
+                    onClick={() => !isLocked(level) && navigate(`/level/${section}/${level}`)}
+                    disabled={isLocked(level)}
+                    className='level-btn'
+                >
+                    Level {level}
+                    {gameState.sections[section].levels[level].completed && ' (Completed)'}
+                </button>
+            ))}
+            <img
+                src= {StringIntro}
+                style={{
+                    display: 'flex',
+                    alignItems: 'start'
+                }}
+                alt = "Home"
+            />
         </div>
     )
 }
