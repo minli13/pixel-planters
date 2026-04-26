@@ -14,7 +14,7 @@ const Home = () => { //Homepage - play button
       <h1>Pixel Planters</h1>
       <h2>Grow your coding skills!</h2>
       <div className = "background-image-container">
-        <Link to="/garden"> 
+        <Link to="/gameSlots"> 
           <img
             src= {Play}
             style={{
@@ -31,7 +31,6 @@ const Home = () => { //Homepage - play button
           Options
         </button>
       </div>
-        <NavBar />
     </div>
   )
 }
