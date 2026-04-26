@@ -2,7 +2,10 @@ import React from 'react'
 import { useState } from 'react'
 import { useGarden } from '../helpers/GardenContext'
 import { useNavigate } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import HomeButton from '../assets/HomeButton.png'
 import '../styles/slots.css'
+import './styles.css'
 import SlotCard from '../components/SlotCard'
 
 const GameSlots = () => {
@@ -48,22 +51,40 @@ const GameSlots = () => {
     }
 
     return (
-        <div className='slot-container'>
-            {[0, 1, 2].map(i => (
-                <SlotCard
-                    key={i}
-                    slotNumber={i}
-                    save={slots[i]}
-                    isNaming={namingSlot === i}
-                    inputName={inputName}
-                    onNameChange={setInputName}
-                    onContinue={() => handleContinue(i)}
-                    onNewGame={() => handleNewGame(i)}
-                    onConfirmNew={handleConfirmNew}
-                    onCancelNaming={() => setNamingSlot(null)}
-                    onDelete={() => deleteSlot(i)}
-                />
-            ))}
+        <div className = "background-slot"
+        style={{
+            display: 'block'
+        }}>
+            <div> {/*home button*/}
+                <Link to="/"> 
+                <img
+                    src= {HomeButton}
+                    style={{
+                    height:68,
+                    width:68,
+                    display: 'flex',
+                    justifyContent: 'flex-start'
+                }}
+                alt = "Home"/>
+                </Link>
+            </div>
+            <div className='slot-container'> {/*contains game slots*/}
+                {[0, 1, 2].map(i => (
+                    <SlotCard
+                        key={i}
+                        slotNumber={i}
+                        save={slots[i]}
+                        isNaming={namingSlot === i}
+                        inputName={inputName}
+                        onNameChange={setInputName}
+                        onContinue={() => handleContinue(i)}
+                        onNewGame={() => handleNewGame(i)}
+                        onConfirmNew={handleConfirmNew}
+                        onCancelNaming={() => setNamingSlot(null)}
+                        onDelete={() => deleteSlot(i)}
+                    />
+                ))}
+            </div>
         </div>
     )
 }

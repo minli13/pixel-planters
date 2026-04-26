@@ -61,8 +61,11 @@ const Garden = () => {
         saveToSlot(activeSlot, gameState);
     }
     return (
-        <div >
-            <div> {/*home button*/}
+        <div className = "background-garden"
+        style={{
+            display: 'block'
+        }}>
+            <div > {/*home button*/}
                 <Link to="/"> 
                 <img
                 src= {HomeButton}
@@ -77,47 +80,42 @@ const Garden = () => {
             </div>
             <button onClick={handleSave}>Save</button> {/* we need a save button */}
             <div>
-                <div className = "background-image-container"> {/*background grass img*/}
-                <h1>Your Garden</h1> {/*title*/}
-                <div
-                    style={{
-                    justifyContent: 'center',
-                    flexDirection: 'row'
-                    }}> {/*dirt patches*/}
-                    <Link to= "/levels/1">
-                    <img
-                        src= {DirtPatch}
-                        style={{
-                        height:176,
-                        width: 176,
-                        display: 'flex',
-                        alignItems: 'center'
-                        }}
-                        alt = "section 1"/>
-                    </Link>
-                    <Link to= "/levels/2">
+                <div>
+                    <div> {/*dirt patches*/}
+                        <Link to= "/levels/1">
                         <img
-                        src= {DirtPatch}
+                            src= {DirtPatch}
+                            style={{
+                            height:176,
+                            width: 176,
+                            display: 'flex',
+                            alignItems: 'center'
+                            }}
+                            alt = "section 1"/>
+                        </Link>
+                        <Link to= "/levels/2">
+                            <img
+                            src= {DirtPatch}
+                            style={{
+                            height:176,
+                            width: 176,
+                            display: 'flex',
+                            alignItems: 'center'
+                            }}
+                            alt = "section 2"/>
+                        </Link>
+                    </div>
+                    <div> {/*dialog*/}
+                        <img 
+                        src= {DialogIntroNew}
                         style={{
-                        height:176,
-                        width: 176,
-                        display: 'flex',
-                        alignItems: 'center'
+                            height:256,
+                            width: 1216,
+                            display: 'flex',
+                            justifyContent: 'center'
                         }}
-                        alt = "section 2"/>
-                    </Link>
-                </div>
-                <div> {/*dialog*/}
-                    <img 
-                    src= {DialogIntroNew}
-                    style={{
-                        height:128,
-                        width: 608,
-                        display: 'fixed',
-                        alignItems: 'center'
-                    }}
-                    alt = "Welcome to Pixel Planters! Click a dirt patch to start growing!"/>
-                </div>
+                        alt = "Welcome to Pixel Planters! Click a dirt patch to start growing!"/>
+                    </div>
                 </div>
             </div>
         </div>
