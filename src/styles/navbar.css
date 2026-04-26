@@ -2,6 +2,16 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 
-;
+  min-width: 200px;
+  font-size: 26px;
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+nav > a {
+  text-decoration: none;
+  color: gray;
+}
+
+nav a:hover {
+  color: #FFF;
 }

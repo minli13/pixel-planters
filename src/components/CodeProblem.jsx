@@ -51,7 +51,7 @@ function Block({ block, disabled }) {
     );
 }
 
-function CodeProblem({ blocks, snippetSlots, onChange, disabled }) {
+function CodeProblem({ blocks, snippetSlots, onChange, disabled, lines }) {
     // update available and slotted blocks between levels
     useEffect(() => {
         setAvailable(blocks.map((block, index) => ({
@@ -130,11 +130,28 @@ function CodeProblem({ blocks, snippetSlots, onChange, disabled }) {
     onChange(updated);
 
    }
+
+    function getLines() {
+        if (!lines) return [slotted];  // single line default
+        let i = 0;
+        return lines.map(count => {
+            const lineSlots = slotted.slice(i, i + count);
+            i += count;
+            return lineSlots;
+        });
+    }
     
     return (
         <DndContext collisionDetection={pointerWithin} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
             {/* code snippet with placeholders */}
-            <SnippetZone slotted={slotted} />
+            {/* <SnippetZone slotted={slotted} /> */}
+
+            <div style={{ display: 'flex', flexDirection: 'column'}}>
+                {getLines().map((lineSlots, lineIndex) => (
+                    <SnippetZone key={lineIndex} slotted={lineSlots} />
+                ))}
+            </div>
+         
 
             {/* available blocks */}
             <div className='available-blocks'>
