@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { useGarden } from '../GardenContext'
+import { useGarden } from '../helpers/GardenContext'
 import { useNavigate } from 'react-router-dom'
 import '../styles/slots.css'
 import SlotCard from '../components/SlotCard'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGarden } from '../GardenContext'
+import { useGarden } from '../helpers/GardenContext'
 import NavBar from '../components/NavBar'
 import Home from './Home'
 import { Link } from "react-router-dom";
@@ -62,8 +62,6 @@ const Garden = () => {
     }
     return (
         <div >
-        <button onClick={handleSave}>Save</button>
-
             <div> {/*home button*/}
                 <Link to="/"> 
                 <img
@@ -77,6 +75,7 @@ const Garden = () => {
                 alt = "Home"/>
                 </Link>
             </div>
+            <button onClick={handleSave}>Save</button> {/* we need a save button */}
             <div>
                 <div className = "background-image-container"> {/*background grass img*/}
                 <h1>Your Garden</h1> {/*title*/}
@@ -85,7 +84,7 @@ const Garden = () => {
                     justifyContent: 'center',
                     flexDirection: 'row'
                     }}> {/*dirt patches*/}
-                    <Link to= "/levels">
+                    <Link to= "/levels/1">
                     <img
                         src= {DirtPatch}
                         style={{
@@ -94,9 +93,9 @@ const Garden = () => {
                         display: 'flex',
                         alignItems: 'center'
                         }}
-                        alt = "dirtpatch 1"/>
+                        alt = "section 1"/>
                     </Link>
-                    <Link to= "/levels">
+                    <Link to= "/levels/2">
                         <img
                         src= {DirtPatch}
                         style={{
@@ -105,7 +104,7 @@ const Garden = () => {
                         display: 'flex',
                         alignItems: 'center'
                         }}
-                        alt = "dirtpatch 2"/>
+                        alt = "section 2"/>
                     </Link>
                 </div>
                 <div> {/*dialog*/}

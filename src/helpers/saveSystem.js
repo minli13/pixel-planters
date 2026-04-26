@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { DEFAULT_SAVE } from "./data/defaultSave";
+import { DEFAULT_SAVE } from "../data/defaultSave";
 
 const SLOTS_KEY = "garden_saves";
 const ACTIVE_KEY = "garden_active";

@@ -1,84 +1,60 @@
 import React from 'react'
-import { useGarden } from '../GardenContext'
-import { useNavigate } from 'react-router-dom'
-import { Link } from "react-router-dom";
+import { useGarden } from '../helpers/GardenContext'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 import HomeButton from '../assets/HomeButton.png'
 import StringIntro from '../assets/DialogStringIntro.png'
 import './styles.css'
+import '../styles/levels.css'
 
 const Levels = () => {
+    const { section } = useParams();
     const { gameState } = useGarden();
     const navigate = useNavigate();
 
-    if (!gameState) {
-        return <p>Loading...</p>;
-    }
-
-    function isLocked(section, level) {
-        if (section === 1 && level === 1) {
+    function isLocked(level) {
+        if (level === 1) {
             return false;
         }
-
-        // check previous level in same sections
-        if (level > 1) {
-            return !gameState.sections[section].levels[level - 1].completed;
-        }
-
-        // check previous level in previous section
-        if (level === 1) {
-            return !gameState.sections[section - 1].levels[3].completed;
-        }
-    }
-
-    function handleSelectLevel(section, level) {
-        if (!isLocked(section, level)) {
-            navigate(`/level/${section}/${level}`);
-        }
+        return !gameState.sections[section].levels[level - 1].completed;
     }
 
     return (
-        <div>
-            <div>
-                {[1, 2].map(section => (
-                    <div key={section}>
-                        <h2>Section {section}</h2>
-                        {[1, 2, 3].map(level => (
-                            <button
-                                key={level}
-                                onClick={() => handleSelectLevel(section, level)}
-                                disabled={isLocked(section, level)}
-                            >
-                                Level {level}
-                                {gameState.sections[section].levels[level].completed && ' (Completed)'}
-                            </button>
-                        ))}
-                    </div>
-                ))}
-            </div>
-    
-            <div>
+        <div>    
             {/*home button*/}
-                <Link to="/"> 
+            <Link to="/"> 
                 <img
-                src= {HomeButton}
-                style={{
-                    height:68,
-                    width:68,
-                    display: 'flex',
-                    alignItems: 'start'
-                }}
-                alt = "Home"/>
-                </Link>
-                <div className = "background-image-container"> {/*title and description*/}
-                <h1>Levels</h1>
+                    src= {HomeButton}
+                    style={{
+                        height:68,
+                        width:68,
+                        display: 'flex',
+                        alignItems: 'start'
+                    }}
+                    alt = "Home"
+                />
+            </Link>
+
+            <div className = "background-image-container"> {/*title and description*/}
+                <h1>Section {section}</h1>
+                {[1, 2, 3].map(level => (
+                    <button
+                        key={level}
+                        onClick={() => !isLocked(level) && navigate(`/level/${section}/${level}`)}
+                        disabled={isLocked(level)}
+                        className='level-btn'
+                    >
+                        Level {level}
+                        {gameState.sections[section].levels[level].completed && ' (Completed)'}
+                    </button>
+                ))}
                 <img
-                src= {StringIntro}
-                style={{
-                    display: 'flex',
-                    alignItems: 'start'
-                }}
-                alt = "Home"/>
-                </div>
+                    src= {StringIntro}
+                    style={{
+                        display: 'flex',
+                        alignItems: 'start'
+                    }}
+                    alt = "Home"
+                />
             </div>
         </div>
     )

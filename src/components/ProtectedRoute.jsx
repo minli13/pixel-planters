@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
-import { useGarden } from '../GardenContext'
+import { useGarden } from '../helpers/GardenContext'
 
 const ProtectedRoute = ({ children }) => {
     const { gameState } = useGarden();

@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import { GardenContext } from "./GardenContext.js";
-import { useSaveSystem } from "./saveSystem.js";
+import { GardenContext } from "./helpers/GardenContext.js";
+import { useSaveSystem } from "./helpers/saveSystem.js";
 import Home from "./pages/Home.jsx";
 import Garden from "./pages/Garden.jsx";
 import Level from "./pages/Level.jsx";
@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/gameSlots" element={<GameSlots />} />
         <Route path="/garden" element={<ProtectedRoute><Garden /></ProtectedRoute>} />
-        <Route path="/levels" element={<ProtectedRoute><Levels /></ProtectedRoute>} />
+        <Route path="/levels/:section" element={<ProtectedRoute><Levels /></ProtectedRoute>} />
         <Route path="/level/:section/:level" element={<ProtectedRoute><Level /></ProtectedRoute>} />
       </Routes>
     </GardenContext.Provider>

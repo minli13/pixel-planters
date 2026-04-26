@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useGarden } from '../GardenContext'
+import { useGarden } from '../helpers/GardenContext'
 import { useNavigate } from 'react-router-dom'
 import { LEVEL_CONTENT } from '../data/levelContent'
 import CodeProblem from '../components/CodeProblem'
@@ -12,16 +12,19 @@ const Level = () => {
   const navigate = useNavigate();
   const [userBlocks, setUserBlocks] = useState([]);
   const [feedback, setFeedback] = useState(null);
+  
 
   const levelData = LEVEL_CONTENT[section][level];
 
   function handleCheck() {
-    console.log('userBlocks:', userBlocks);
-  console.log('solution:', levelData.solution);
-  console.log('match:', userBlocks.every((block, i) => block === levelData.solution[i]));
     const isCorrect = userBlocks.every(
       (block, index) => block === levelData.solution[index]
     );
+
+    if (userBlocks.length !== levelData.snippetSlots) {
+      setFeedback('incorrect');
+      return;
+    }
 
     if (isCorrect) {
       setFeedback('correct');
