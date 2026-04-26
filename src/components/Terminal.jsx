@@ -8,7 +8,6 @@ const Terminal = ({ code, run, onRunComplete }) => {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        console.log('run', run, 'code', code);
         if (!run || !code) return;
         async function execute() {
             const result = await runCode(code);

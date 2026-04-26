@@ -3,6 +3,10 @@
   --dark-green: #97C459;
 }
 
+html {
+  background-color: var(--light-green);
+}
+
 body {
   margin: 0;
   box-sizing: border-box;
