@@ -2,3 +2,63 @@
     width: 100px;
     height: 50px;
 }
+
+.level-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.level-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.level-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 80%;
+
+}
+
+.available-blocks {
+    grid-area: available-blocks;
+}
+
+.snippet-zone {
+    grid-area: snippet-zone;
+}
+
+.level-content {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-areas: 
+        "available-blocks snippet-zone"
+        "available-blocks level-btns"
+        "available-blocks terminal"
+        "available-blocks level-feedback";
+
+}
+
+.level-feedback {
+    grid-area: level-feedback;
+}
+
+.level-btns {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    grid-area: level-btns;
+}
+
+.terminal {
+    grid-area: terminal;
+    width: 500px;
+    height: 300px;
+    border: 1px solid black;
+}

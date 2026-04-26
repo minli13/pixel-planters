@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import {useState} from 'react'
 import Play from '../assets/PlayButtonUp.png'
 import PlayDown from '../assets/PlayButtonDown.png'
-import './styles.css'
+import '../styles/styles.css'
 
 const Home = () => { //Homepage - play button
 

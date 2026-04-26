@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 import HomeButton from '../assets/HomeButton.png'
 import DialogIntroNew from '../assets/DialogueIntroNewUser.png'
 import DirtPatch from '../assets/DirtPatch.png'
-import './styles.css'
-
+import '../styles/styles.css'
 
 
 const Garden = () => {

@@ -57,6 +57,14 @@ export function useSaveSystem() {
         return newSlot;
     }
 
+    function completeLevel(slotIndex, section, level) {
+        const saved = loadFromSlot(slotIndex);
+        if (saved) {
+            saved.sections[section].levels[level].completed = true;
+            saveToSlot(slotIndex, saved);
+        }
+    }
+
     return {
         slots,
         activeSlot,
@@ -64,5 +72,6 @@ export function useSaveSystem() {
         loadFromSlot,
         deleteSlot,
         newSlot,
+        completeLevel
     };
 }

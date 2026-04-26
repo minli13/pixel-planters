@@ -1,33 +1,63 @@
-import React from 'react'
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { use } from 'react'
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useGarden } from '../helpers/GardenContext'
-import { useNavigate } from 'react-router-dom'
 import { LEVEL_CONTENT } from '../data/levelContent'
 import CodeProblem from '../components/CodeProblem'
+import '../styles/levels.css'
+import Terminal from '../components/Terminal'
+import Navbar from '../components/NavBar'
 
 const Level = () => {
   const { section, level } = useParams(); // from url
-  const { gameState, completeLevel } = useGarden();
+  const { gameState, completeLevel, ready } = useGarden();
   const navigate = useNavigate();
   const [userBlocks, setUserBlocks] = useState([]);
   const [feedback, setFeedback] = useState(null);
-  
+  const [assembledCode, setAssembledCode] = useState('');
+  const [isRunning, setIsRunning] = useState(false);
+  const [codeToDisplay, setCodeToDisplay] = useState('');
+
 
   const levelData = LEVEL_CONTENT[section][level];
 
+  useEffect(() => {
+    setUserBlocks([]);
+    setFeedback(null);
+    setAssembledCode('');
+    setIsRunning(false);
+    setCodeToDisplay('');
+  }, [section, level]);
+
+  function handleChange(updated) {
+    if (!Array.isArray(updated)) return;
+    setUserBlocks(updated);
+    console.log(updated.filter(Boolean).join(' ').trim());
+    setAssembledCode(updated.filter(Boolean).join(' ').trim());
+  }
+
+  function handleRun() {
+    const current = userBlocks.filter(Boolean).join(' ').trim();
+    setCodeToDisplay(current);
+    setIsRunning(false);
+    setTimeout(() => setIsRunning(true), 0);
+  }
+
   function handleCheck() {
+    if (userBlocks.length !== levelData.snippetSlots) {
+      setFeedback('incomplete');
+      return;
+    }
+
     const isCorrect = userBlocks.every(
       (block, index) => block === levelData.solution[index]
     );
 
-    if (userBlocks.length !== levelData.snippetSlots) {
-      setFeedback('incorrect');
-      return;
-    }
-
     if (isCorrect) {
       setFeedback('correct');
+      setCodeToDisplay(levelData.codeToRun); // run what should be shown
+      setIsRunning(false);
+      setTimeout(() => setIsRunning(true), 0);
       completeLevel(Number(section), Number(level));
     } else {
       setFeedback('incorrect');
@@ -49,33 +79,53 @@ const Level = () => {
 
 
   return (
-    <div>
-      <p>Section {section} - Level {level}</p>
-      <p>{levelData.prompt}</p>
-      <CodeProblem
-        blocks={levelData.blocks}
-        snippetSlots={levelData.snippetSlots}
-        onChange={setUserBlocks}
-      />
-
-      {/* user checked answer */}
-      {feedback && (
-        <div>
-          <p>{feedback}</p>
-          {feedback === 'correct' && (
-            <button onClick={handleNext}>Next</button>
-          )}
-          {feedback === 'incorrect' && (
-            <button onClick={handleCheck}>Try Again</button>
-          )}
-        </div>
-      )}
-
-      {/* user hasn't checked */}
-      {!feedback && (
-          <button onClick={handleCheck}>Check</button>
-      )}
+    <div className='level-container'>
       
+      <div className='level-header'>
+        <Navbar />
+        <div className='level-title'>
+          <p>Section {section} - Level {level}</p>
+          <p>{levelData.prompt}</p>
+        </div>
+       
+      </div>
+
+      <div className='level-content'>
+        <CodeProblem
+          blocks={levelData.blocks}
+          snippetSlots={levelData.snippetSlots}
+          onChange={handleChange}
+          disabled={!ready}
+        />
+        
+        {/* user hasn't checked */}
+        <div className='level-btns'>
+          <button onClick={handleRun} disabled={!ready}>Run</button>
+          <button onClick={handleCheck}>Submit</button>
+        </div>
+        
+
+        <Terminal 
+          key={`${section}-${level}`}
+          code={codeToDisplay} 
+          run={isRunning} 
+          onRunComplete={() => setIsRunning(false)}
+        />
+      
+        {/* user checked answer */}
+        {feedback && (
+          <div className='level-feedback'>
+            <p>{feedback}</p>
+            {feedback === 'correct' && (
+              <button onClick={handleNext}>Next</button>
+            )}
+            
+            {feedback === 'incomplete' && (
+              <p>Fill all the slots before submitting!</p>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   )
 }

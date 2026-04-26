@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { GardenContext } from "./helpers/GardenContext.js";
 import { useSaveSystem } from "./helpers/saveSystem.js";
+import { usePyodide } from "./helpers/usePyodide.js";
 import Home from "./pages/Home.jsx";
 import Garden from "./pages/Garden.jsx";
 import Level from "./pages/Level.jsx";
@@ -12,11 +13,12 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 function App() {
   const [gameState, setGameState] = useState(null);
   const saveSystem = useSaveSystem();
+  const pyodide = usePyodide();
 
   return (
-    <GardenContext.Provider value={{ gameState, setGameState, ...saveSystem }}>
+    <GardenContext.Provider value={{ gameState, setGameState, ...saveSystem, ...pyodide }}>
       <Routes>
-        {/* protected route ensure path is not accessible without being logged in */}
+        {/* protected route ensures path is not accessible without being logged in */}
         <Route path="/" element={<Home />} />
         <Route path="/gameSlots" element={<GameSlots />} />
         <Route path="/garden" element={<ProtectedRoute><Garden /></ProtectedRoute>} />

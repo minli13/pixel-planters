@@ -3,7 +3,7 @@ import { useGarden } from '../helpers/GardenContext'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import HomeButton from '../assets/HomeButton.png'
 import StringIntro from '../assets/DialogStringIntro.png'
-import './styles.css'
+import '../styles/styles.css'
 import '../styles/levels.css'
 
 const Levels = () => {

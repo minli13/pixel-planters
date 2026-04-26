@@ -1,22 +1,13 @@
 import React from 'react'
 import { DndContext, DragOverlay, useDroppable, pointerWithin, useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import '../styles/problem.css'
+
 
 function SnippetZone ({ slotted }) {
     return (
-        <div
-            style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                padding: 12,
-                border: '2px dashed gray',
-                borderRadius: 8,
-                fontFamily: 'monospace',
-            }}
-        >
-            <span>result = </span>
+        <div className='snippet-zone'>
             {slotted.map((slot, index) => (
                 <Slot key={slot.id} slot={slot} index={index} />
             ))}
@@ -31,52 +22,50 @@ function Slot ({ slot }) {
     return (
         <div
             ref={setNodeRef}
+            className='slot'
             style={{
-                minWidth: 80, // ensure there is a minimum width to be clickable
-                minHeight: 36, // ensure there is a minimum height to be clickable
-                padding: 8,
                 border: isOver ? '2px solid green' : '1px dashed gray',
-                borderRadius: 4,
-                fontFamily: 'monospace',
                 background: isOver ? 'lightgreen' : 'transparent',
-                textAlign: 'center',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
             }}
         >
             {slot.label ?? '______'}
         </div>
     )
 }
-function Block({ block }) {
+function Block({ block, disabled }) {
     const { attributes, listeners, setNodeRef, transform, transition } = useDraggable({ 
         id: block.id,
         data: { label: block.label }, 
+        disabled
     });
-
     const style = {
         transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : undefined,
         transition,
-        padding: '6px 12px',
-        border: '1px solid gray',
-        borderRadius: 4,
-        background: 'white',
-        cursor: 'grab',
-        fontFamily: 'monospace'
-    };
-
+        opacity: disabled ? 0.5 : 1,
+        cursor: disabled ? 'not-allowed' : 'grab',
+    }
     return (
-        <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+        <div ref={setNodeRef} className='block' style={style} {...attributes} {...listeners}>
             {block.label}
         </div>
     );
 }
 
-function CodeProblem({ blocks, snippetSlots, onChange }) {
+function CodeProblem({ blocks, snippetSlots, onChange, disabled }) {
+    // update available and slotted blocks between levels
+    useEffect(() => {
+        setAvailable(blocks.map((block, index) => ({
+            id: `avail-${index}`,
+            label: block
+        })))
+        setSlotted(Array.from({ length: snippetSlots }, (_, index) => ({
+            id: `slot-${index}`,
+            label: null
+        })));
+    }, [blocks, snippetSlots]);
+
     // snippetSlots = # of blanks in the snippet
     // blocks = available draggable blocks
-
     const [available, setAvailable] = useState(
         blocks.map((block, index) => ({ id: `avail-${index}`, label: block }))
     )
@@ -98,9 +87,6 @@ function CodeProblem({ blocks, snippetSlots, onChange }) {
     // active = block being dragged
     // over = slot being dropped on
     const { active, over } = event;
-    console.log('active:', active);
-    console.log('over:', over);
-    console.log('active.data.current:', active?.data?.current);
     setActiveBlock(null);
 
     if (!over) return; // dropped outside the zones
@@ -151,16 +137,16 @@ function CodeProblem({ blocks, snippetSlots, onChange }) {
             <SnippetZone slotted={slotted} />
 
             {/* available blocks */}
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 16 }}>
+            <div className='available-blocks'>
                 {available.map((block) => (
-                    <Block key={block.id} block={block} />
+                    <Block key={block.id} block={block} disabled={disabled}/>
                 ))}
             </div>
 
             {/* follows the cursor while dragging */}
             <DragOverlay>
                 {activeBlock ? (
-                <div style={{ padding: '6px 12px', background: 'white', border: '1px solid gray', borderRadius: 4 }}>
+                <div className='active-block'>
                     {activeBlock.label}
                 </div>
                 ) : null}

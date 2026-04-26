@@ -5,7 +5,7 @@ export const DEFAULT_SAVE = {
     currentSection: 1,
     currentLevel: 1,
     sections: {
-        1: {
+        "1": {
             completed: false,
             levels: {
                 1: { completed: false },
@@ -13,7 +13,7 @@ export const DEFAULT_SAVE = {
                 3: { completed: false },
             }
         },
-        2: {
+        "2": {
             completed: false,
             levels: {
                 1: { completed: false },
