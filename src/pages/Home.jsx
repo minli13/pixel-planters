@@ -11,21 +11,17 @@ const Home = () => { //Homepage - play button
 
   return (
     <div className = "background-image-container">
-      <h1>Pixel Planters</h1>
-      <h2>Grow your coding skills!</h2>
-      <div>
-        <Link to="/gameSlots"> 
-          <img
-            src= {Play}
-            style={{
-              height:96,
-              width:288,
-              marginTop: 500
-            }}
-            alt = "Play"
-            />
-        </Link>
-      </div>
+      <Link to="/gameSlots"> 
+        <img
+          src= {Play}
+          style={{
+            height:96,
+            width:288,
+            marginTop: 500
+          }}
+          alt = "Play"
+          />
+      </Link>
     </div>
   )
 }

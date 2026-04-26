@@ -51,7 +51,7 @@ const GameSlots = () => {
     }
 
     return (
-        <div className = "background-image-container"
+        <div className = "background-slot"
         style={{
             display: 'block'
         }}>
@@ -63,7 +63,7 @@ const GameSlots = () => {
                     height:68,
                     width:68,
                     display: 'flex',
-                    alignItems: 'start'
+                    justifyContent: 'flex-start'
                 }}
                 alt = "Home"/>
                 </Link>

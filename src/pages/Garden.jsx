@@ -61,7 +61,7 @@ const Garden = () => {
         saveToSlot(activeSlot, gameState);
     }
     return (
-        <div className = "background-image-container"
+        <div className = "background-garden"
         style={{
             display: 'block'
         }}>
@@ -80,11 +80,6 @@ const Garden = () => {
             </div>
             <button onClick={handleSave}>Save</button> {/* we need a save button */}
             <div>
-                <div style={{
-                    justifyContent: 'center',
-                    display: 'flex'
-                    }}> {/*background grass img*/}
-                <h1>Your Garden</h1></div> {/*title*/}
                 <div>
                     <div> {/*dirt patches*/}
                         <Link to= "/levels/1">

@@ -5,6 +5,9 @@ import { useGarden } from '../helpers/GardenContext'
 import { useNavigate } from 'react-router-dom'
 import { LEVEL_CONTENT } from '../data/levelContent'
 import CodeProblem from '../components/CodeProblem'
+import './styles.css'
+import '../styles/levels.css'
+
 
 const Level = () => {
   const { section, level } = useParams(); // from url
@@ -49,7 +52,7 @@ const Level = () => {
 
 
   return (
-    <div>
+    <div className = 'background-plain'>
       <p>Section {section} - Level {level}</p>
       <p>{levelData.prompt}</p>
       <CodeProblem
@@ -63,7 +66,7 @@ const Level = () => {
         <div>
           <p>{feedback}</p>
           {feedback === 'correct' && (
-            <button onClick={handleNext}>Next</button>
+            <button onClick={handleNext} className='level-btn'>Next</button>
           )}
           {feedback === 'incorrect' && (
             <button onClick={handleCheck}>Try Again</button>

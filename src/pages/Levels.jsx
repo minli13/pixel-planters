@@ -2,7 +2,9 @@ import React from 'react'
 import { useGarden } from '../helpers/GardenContext'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import HomeButton from '../assets/HomeButton.png'
+import GarButton from '../assets/GardenButton.png'
 import StringIntro from '../assets/DialogStringIntro.png'
+import VariableIntro from '../assets/DialogVariableIntro.png'
 import './styles.css'
 import '../styles/levels.css'
 
@@ -19,11 +21,8 @@ const Levels = () => {
     }
 
     return (
-        <div className = "background-image-container"> {/*title and description*/}
-        <div style={{
-            display: 'flex',
-            justifyContent: 'center'
-        }}>
+        <div className = 'background-plain'>{/*title and description*/}
+        <div>
             {/*home button*/}
             <Link to="/"> 
                 <img
@@ -31,9 +30,23 @@ const Levels = () => {
                     style={{
                         height:68,
                         width:68,
-                        display: 'start',
+                        display: 'flex-start',
+
                     }}
                     alt = "Home"
+                />
+            </Link>
+            {/*garden button*/}
+            <Link to="/garden"> 
+                <img
+                    src= {GarButton}
+                    style={{
+                        height:68,
+                        width:68,
+                        display: 'flex-start',
+
+                    }}
+                    alt = "Garden"
                 />
             </Link>
             <h1>Section {section}</h1>
@@ -50,7 +63,7 @@ const Levels = () => {
                 </button>
             ))}
             <img
-                src= {StringIntro}
+                src= {VariableIntro}
                 style={{
                     display: 'flex',
                     alignItems: 'start'
