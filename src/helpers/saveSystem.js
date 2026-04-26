@@ -57,6 +57,44 @@ export function useSaveSystem() {
         return newSlot;
     }
 
+    function completeLevel(section, level) {
+        const saved = slots[activeSlot];
+        if (!saved) return;
+
+        let nextLevel = level;
+        if (level < 3) {
+            nextLevel = level + 1;
+        }
+
+        let nextSection = section;
+        if (level === 3 && section < 2) {
+            nextSection = section + 1;
+            nextLevel = 1;
+        }
+        
+        const updated = {
+            ...saved,
+            currentSection: nextSection,
+            currentLevel: nextLevel,
+            sections: {
+                ...saved.sections,
+                [section]: {
+                    ...saved.sections[section],
+                    levels: {
+                        ...saved.sections[section].levels,
+                        [level]: { completed: true }
+                    }
+                }
+            }
+        };
+
+        setSlots(prev => ({
+            ...prev,
+            [activeSlot]: updated
+        }));
+        saveToSlot(activeSlot, updated);
+    }
+
     return {
         slots,
         activeSlot,
@@ -64,5 +102,6 @@ export function useSaveSystem() {
         loadFromSlot,
         deleteSlot,
         newSlot,
+        completeLevel
     };
 }

@@ -1,13 +1,113 @@
+:root {
+    --light-green: #EAF3DE;
+    --dark-green: #97C459;
+}
+
+.slot-saves {
+    box-sizing: border-box;
+    background-color: #EAF3DE;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    padding: 30px;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Pixelify Sans', sans-serif;
+    color: var(--dark-green);
+    background-image: url('../assets/SlotPage.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.slot-saves>p {
+    width: max-content;
+    font-size: 30px;
+    
+}
+
 .slot-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 200px;
 }
 
 .slot {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
+    background-color: #FFF;
+    font-family: 'Pixelify Sans', sans-serif;
+    color: var(--dark-green);
+    width: 200px;
+    height: 250px;
+    border: 0.5px solid var(--dark-green);
+    border-radius: 4px;
+    padding: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition: border-color 0.3s;
+    cursor: pointer;
+}
+
+.slot:hover {
+    border-width: 2px;
+
+}
+
+.slot p {
+    margin: 5px;
+}
+
+.slot > button {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 11px;
+    padding: 5px 0;
+    border-radius: 4px;
+    border: 0.5px solid var(--dark-green);
+    color: var(--dark-green);
+    margin-top: 10px;
+    width: 100%;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.3s, color 0.3s;
+}
+
+.slot > button:hover {
+    background: var(--dark-green);
+    color: #FFF;
+}
+
+.slot > input {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 11px;
+    padding: 5px;
+    margin: 0 5px;
+    border-radius: 4px;
+    border: 0.5px solid var(--dark-green);
+    color: var(--dark-green);
+    margin-top: 10px;
+    width: auto;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.3s, color 0.3s;
+}
+
+
+.plot-number {
+    font-size: 32px;
+}
+
+.plot-name {
+    font-size: 24px;
+}
+
+.plot-level {
+    font-size: 20px;
+
 }

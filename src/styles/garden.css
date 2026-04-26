@@ -1,0 +1,72 @@
+.garden-container {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--light-green);
+    width: 100%;
+    min-width: 100vw;
+    height: 100vh;
+    font-family: 'Pixelify Sans', sans-serif;
+    color: #FFF;
+    background-image: url('../assets/Garden.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.garden {
+    padding-top: 180px;
+    width: 100%;
+    min-width: max-content;
+    display: flex;
+    flex-direction: column;
+    font-size: 32px;
+    align-items: center;
+    gap: 10px;
+}
+
+.garden-dialogue {
+    height: auto;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+.dirt-patches-container {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 22px;
+    border: 2px dashed var(--light-green);
+    border-radius: 8px;
+}
+
+.dirt-patches-container img {
+    width: 128px;
+    height: 128px;
+    margin: 5px;
+}
+
+.dirt-container:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.dirt-container {
+    position: relative;
+    text-align: center;
+}
+
+.dirt-patches-container .section-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 44px;
+    color: #FFF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}

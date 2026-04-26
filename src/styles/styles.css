@@ -1,16 +1,17 @@
-.background-image-container {
-  background-image: url('../assets/HomePage.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  height:780px;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0;
+:root {
+  --light-green: #EAF3DE;
+  --dark-green: #97C459;
 }
-.background-garden{
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+}
+
+
+/* .background-garden{
   background-image: url('../assets/Garden.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -21,8 +22,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 0;
-}
-.background-slot{
+} */
+/* .background-slot{
   background-image: url('../assets/SlotPage.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -33,9 +34,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 0;
-}
-.background-plain{
+} */
+/* .background-plain{
   background-image: url('../assets/PlainBg.png');
   background-size: cover;
   height:780px;
-}
+} */

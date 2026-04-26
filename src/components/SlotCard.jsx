@@ -4,8 +4,8 @@ const SlotCard = ({slotNumber, save, isNaming, inputName, onNameChange, onContin
     // new slot
     if (isNaming) {
         return (
-            <div>
-                <p>Slot {slotNumber + 1}</p>
+            <div className='slot'>
+                <p className='plot-number'>PLOT {slotNumber + 1}</p>
                 <input
                     value={inputName}
                     onChange={e => onNameChange(e.target.value)} 
@@ -20,10 +20,10 @@ const SlotCard = ({slotNumber, save, isNaming, inputName, onNameChange, onContin
     // existing save
     if (save) {
         return (
-            <div>
-                <p>Slot {slotNumber + 1}</p>
-                <p>{save.name}</p>
-                <p>Level {save.currentLevel} - Section {save.currentSection}</p>
+            <div className='slot'>
+                <p className='plot-number'>PLOT {slotNumber + 1}</p>
+                <p className='plot-name'>{save.name}</p>
+                <p className='plot-level'>Section {save.currentSection} - Level {save.currentLevel}</p>
                 <button onClick={onContinue}>Continue</button>
                 <button onClick={onDelete}>Delete</button>
             </div>
@@ -32,9 +32,9 @@ const SlotCard = ({slotNumber, save, isNaming, inputName, onNameChange, onContin
 
     // empty
     return (
-        <div>
-            <p>Slot {slotNumber + 1}</p>
-            <p>Empty</p>
+        <div className='slot'>
+            <p className='plot-number'>PLOT {slotNumber + 1}</p>
+            <p className='plot-name'>Empty</p>
             <button onClick={onNewGame}>New Game</button>
         </div>
     )

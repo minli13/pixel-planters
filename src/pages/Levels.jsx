@@ -4,73 +4,52 @@ import { useNavigate, useParams, Link } from 'react-router-dom'
 import HomeButton from '../assets/HomeButton.png'
 import GarButton from '../assets/GardenButton.png'
 import StringIntro from '../assets/DialogStringIntro.png'
+import '../styles/styles.css'
 import VariableIntro from '../assets/DialogVariableIntro.png'
-import './styles.css'
 import '../styles/levels.css'
+import Navbar from '../components/NavBar'
 
 const Levels = () => {
     const { section } = useParams();
-    const { gameState } = useGarden();
+    const { slots, activeSlot } = useGarden();
     const navigate = useNavigate();
+
+    const currentSave = slots[activeSlot];
+    if (!currentSave?.sections?.[section]?.levels) return <p>Loading...</p>;
 
     function isLocked(level) {
         if (level === 1) {
             return false;
         }
-        return !gameState.sections[section].levels[level - 1].completed;
+        return !currentSave.sections[section].levels[level - 1].completed;
     }
 
     return (
-        <div className = 'background-plain'>{/*title and description*/}
-        <div>
-            {/*home button*/}
-            <Link to="/"> 
+        
+        <div className='levels-page'>              
+            <Navbar />
+            <div className = "levels-container">
+                <h1>Section {section}</h1>
                 <img
-                    src= {HomeButton}
-                    style={{
-                        height:68,
-                        width:68,
-                        display: 'flex-start',
-
-                    }}
+                    className = "levels-dialogue"
+                    src= {StringIntro}
                     alt = "Home"
                 />
-            </Link>
-            {/*garden button*/}
-            <Link to="/garden"> 
-                <img
-                    src= {GarButton}
-                    style={{
-                        height:68,
-                        width:68,
-                        display: 'flex-start',
-
-                    }}
-                    alt = "Garden"
-                />
-            </Link>
-            <h1>Section {section}</h1>
+                {[1, 2, 3].map(level => (
+                    <button
+                        key={level}
+                        onClick={() => !isLocked(level) && navigate(`/level/${section}/${level}`)}
+                        disabled={isLocked(level)}
+                        className='levels-btn'
+                    >
+                        Level {level}
+                        {currentSave.sections[section].levels[level].completed && ' (Completed)'}
+                    </button>
+                ))}
+            </div>
         </div>
-            {[1, 2, 3].map(level => (
-                <button
-                    key={level}
-                    onClick={() => !isLocked(level) && navigate(`/level/${section}/${level}`)}
-                    disabled={isLocked(level)}
-                    className='level-btn'
-                >
-                    Level {level}
-                    {gameState.sections[section].levels[level].completed && ' (Completed)'}
-                </button>
-            ))}
-            <img
-                src= {VariableIntro}
-                style={{
-                    display: 'flex',
-                    alignItems: 'start'
-                }}
-                alt = "Home"
-            />
-        </div>
+        
+    
     )
 }
 

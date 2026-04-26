@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import HomeButton from '../assets/HomeButton.png'
 import DialogIntroNew from '../assets/DialogueIntroNewUser.png'
 import DirtPatch from '../assets/DirtPatch.png'
-import './styles.css'
-
+import '../styles/styles.css'
+import '../styles/garden.css'
 
 
 const Garden = () => {
@@ -61,64 +61,40 @@ const Garden = () => {
         saveToSlot(activeSlot, gameState);
     }
     return (
-        <div className = "background-garden"
-        style={{
-            display: 'block'
-        }}>
-            <div > {/*home button*/}
-                <Link to="/"> 
-                <img
-                src= {HomeButton}
-                style={{
-                    height:68,
-                    width:68,
-                    display: 'flex',
-                    alignItems: 'start'
-                }}
-                alt = "Home"/>
-                </Link>
-            </div>
-            <button onClick={handleSave}>Save</button> {/* we need a save button */}
+        
+        <div className='garden-container'>
             <div>
-                <div>
-                    <div> {/*dirt patches*/}
-                        <Link to= "/levels/1">
+                <NavBar />
+            </div>
+            <div className='garden'>
+                 {/*title*/}
+                {/* <h1>Your Garden</h1> */}
+
+                {/*dialog*/}
+                <div className='garden-dialogue'> 
+                    <img 
+                        src= {DialogIntroNew}
+                        alt = "Welcome to Pixel Planters! Click a dirt patch to start growing!"/>
+                </div>
+
+                <div className='dirt-patches-container'>
+                    {/*dirt patches*/}
+                    <Link to="/levels/1" className='dirt-container'>
                         <img
                             src= {DirtPatch}
-                            style={{
-                            height:176,
-                            width: 176,
-                            display: 'flex',
-                            alignItems: 'center'
-                            }}
                             alt = "section 1"/>
-                        </Link>
-                        <Link to= "/levels/2">
-                            <img
-                            src= {DirtPatch}
-                            style={{
-                            height:176,
-                            width: 176,
-                            display: 'flex',
-                            alignItems: 'center'
-                            }}
-                            alt = "section 2"/>
-                        </Link>
-                    </div>
-                    <div> {/*dialog*/}
-                        <img 
-                        src= {DialogIntroNew}
-                        style={{
-                            height:256,
-                            width: 1216,
-                            display: 'flex',
-                            justifyContent: 'center'
-                        }}
-                        alt = "Welcome to Pixel Planters! Click a dirt patch to start growing!"/>
-                    </div>
+                        <div className='section-number'>1</div>
+                    </Link>
+                    <Link to="/levels/2" className='dirt-container'>
+                        <img
+                        src= {DirtPatch}
+                        alt = "section 2"/>
+                        <div className='section-number'>2</div>
+                    </Link>
                 </div>
             </div>
         </div>
+
     )
 }
 

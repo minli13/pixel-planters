@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import HomeButton from '../assets/HomeButton.png'
 import '../styles/slots.css'
-import './styles.css'
 import SlotCard from '../components/SlotCard'
+import '../styles/styles.css'
 
 const GameSlots = () => {
     const { 
@@ -51,23 +51,9 @@ const GameSlots = () => {
     }
 
     return (
-        <div className = "background-slot"
-        style={{
-            display: 'block'
-        }}>
-            <div> {/*home button*/}
-                <Link to="/"> 
-                <img
-                    src= {HomeButton}
-                    style={{
-                    height:68,
-                    width:68,
-                    display: 'flex',
-                    justifyContent: 'flex-start'
-                }}
-                alt = "Home"/>
-                </Link>
-            </div>
+        <div className='slot-saves'>
+            {/* <p>YOUR GARDEN SAVES</p> */}
+        
             <div className='slot-container'> {/*contains game slots*/}
                 {[0, 1, 2].map(i => (
                     <SlotCard

@@ -5,24 +5,26 @@ import { Link } from "react-router-dom";
 import {useState} from 'react'
 import Play from '../assets/PlayButtonUp.png'
 import PlayDown from '../assets/PlayButtonDown.png'
-import './styles.css'
+import '../styles/styles.css'
+import '../styles/home.css'
 
 const Home = () => { //Homepage - play button
 
   return (
-    <div className = "background-image-container">
-      <Link to="/gameSlots"> 
-        <img
-          src= {Play}
-          style={{
-            height:96,
-            width:288,
-            marginTop: 500
-          }}
-          alt = "Play"
-          />
-      </Link>
+    <div className = "background-image-container ">
+        {/* <h1>Pixel Planters</h1>
+        <h2>Grow your coding skills!</h2> */}
+        <Link to="/gameSlots"> 
+          <img
+            className='play-btn'
+            src= {Play}
+            alt = "Play"
+            />
+        </Link>
+ 
     </div>
+ 
+
   )
 }
 
