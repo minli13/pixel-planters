@@ -9,14 +9,17 @@ import Navbar from '../components/NavBar'
 
 const Levels = () => {
     const { section } = useParams();
-    const { gameState } = useGarden();
+    const { slots, activeSlot } = useGarden();
     const navigate = useNavigate();
+
+    const currentSave = slots[activeSlot];
+    if (!currentSave?.sections?.[section]?.levels) return <p>Loading...</p>;
 
     function isLocked(level) {
         if (level === 1) {
             return false;
         }
-        return !gameState.sections[section].levels[level - 1].completed;
+        return !currentSave.sections[section].levels[level - 1].completed;
     }
 
     return (
@@ -37,7 +40,7 @@ const Levels = () => {
                         className='levels-btn'
                     >
                         Level {level}
-                        {gameState.sections[section].levels[level].completed && ' (Completed)'}
+                        {currentSave.sections[section].levels[level].completed && ' (Completed)'}
                     </button>
                 ))}
             </div>

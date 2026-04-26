@@ -55,27 +55,27 @@ const Level = () => {
 
     if (isCorrect) {
       setFeedback('correct');
+      completeLevel(Number(section), Number(level));
       setCodeToDisplay(levelData.codeToRun); // run what should be shown
       setIsRunning(false);
       setTimeout(() => setIsRunning(true), 0);
-      completeLevel(Number(section), Number(level));
     } else {
       setFeedback('incorrect');
     }
   }
 
-  function handleNext() {
-    const nextLevel = Number(level) + 1;
-    const nextSection = Number(section) + 1;
+function handleNext() {
+  const nextLevel = Number(level) + 1;
+  const nextSection = Number(section) + 1;
 
-    if (Number(level) < 3) {
-      navigate(`/level/${section}/${nextLevel}`);
-    } else if (Number(section) < 2) {
-      navigate(`/level/${nextSection}/1`);
-    } else {
-      navigate(`/garden`); // all levels are done
-    }
+  if (Number(level) < 3) {
+    navigate(`/level/${section}/${nextLevel}`);
+  } else if (Number(section) < 2) {
+    navigate(`/level/${nextSection}/1`);
+  } else {
+    navigate('/garden');
   }
+}
 
 
   return (
