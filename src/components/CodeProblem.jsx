@@ -22,7 +22,7 @@ function Slot ({ slot }) {
     return (
         <div
             ref={setNodeRef}
-            className='slot'
+            className='problem-slot'
             style={{
                 border: isOver ? '2px solid green' : '1px dashed gray',
                 background: isOver ? 'lightgreen' : 'transparent',

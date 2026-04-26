@@ -48,22 +48,25 @@ const GameSlots = () => {
     }
 
     return (
-        <div className='slot-container'>
-            {[0, 1, 2].map(i => (
-                <SlotCard
-                    key={i}
-                    slotNumber={i}
-                    save={slots[i]}
-                    isNaming={namingSlot === i}
-                    inputName={inputName}
-                    onNameChange={setInputName}
-                    onContinue={() => handleContinue(i)}
-                    onNewGame={() => handleNewGame(i)}
-                    onConfirmNew={handleConfirmNew}
-                    onCancelNaming={() => setNamingSlot(null)}
-                    onDelete={() => deleteSlot(i)}
-                />
-            ))}
+        <div className='slot-saves'>
+            <p>YOUR GARDEN SAVES</p>
+            <div className='slot-container'>
+                {[0, 1, 2].map(i => (
+                    <SlotCard
+                        key={i}
+                        slotNumber={i}
+                        save={slots[i]}
+                        isNaming={namingSlot === i}
+                        inputName={inputName}
+                        onNameChange={setInputName}
+                        onContinue={() => handleContinue(i)}
+                        onNewGame={() => handleNewGame(i)}
+                        onConfirmNew={handleConfirmNew}
+                        onCancelNaming={() => setNamingSlot(null)}
+                        onDelete={() => deleteSlot(i)}
+                    />
+                ))}
+             </div>
         </div>
     )
 }

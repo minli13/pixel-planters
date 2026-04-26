@@ -1,12 +1,63 @@
-.level-btn {
-    width: 100px;
-    height: 50px;
+/* LEVELS PAGE */
+.levels-page {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
 }
 
+.levels-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    background-color: var(--light-green);
+    font-family: 'Pixelify Sans', sans-serif;
+    color: var(--dark-green);
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+}
+
+.levels-btn { /* level 1, 2, 3 */
+    width: max-content;
+    height: auto;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 32px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 0.5px solid var(--dark-green);
+    color: var(--dark-green);
+    margin-top: 10px;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.3s, color 0.3s;
+}
+
+.levels-btn:hover {
+    background: var(--dark-green);
+    color: #FFF;
+}
+
+.levels-dialogue {
+    height: auto;
+    width: 500px;
+    display: flex;
+    align-items: center;
+}
+
+/* PER LEVEL */
 .level-container {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
     gap: 10px;
+    background-color: var(--light-green);
+    font-family: 'Pixelify Sans', sans-serif;
+    color: var(--dark-green);
+    align-items: center;
 }
 
 .level-header {
@@ -15,23 +66,87 @@
     width: 100%;
 }
 
-.level-title {
+.level-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid black;
-    border-radius: 20px;
-    width: 80%;
-
+    font-family: 'Pixelify Sans', sans-serif;
+    color: var(--dark-green);
 }
 
+.level-title {
+    font-size: 32px;
+    margin: 0;
+}
+
+.level-prompt {
+    font-size: 24px;
+    margin: 0;
+}
+
+/* dragging block */
+.active-block {
+    padding: 6px 12px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    background: #FFF;
+    cursor: grab;
+    font-family: 'monospace';
+}
+
+/* LEFT */
 .available-blocks {
     grid-area: available-blocks;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin: 15px auto;
+    width: 100%;
 }
 
+/* dragabble blocks sitting on left */
+.block {
+    padding: 6px 12px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    background: white;
+    cursor: grab;
+    font-family: 'monospace';
+}
+
+.block:hover {
+    background: lightgray;
+}
+
+/* RIGHT */
 .snippet-zone {
     grid-area: snippet-zone;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    height: max-content;
+    width: max-content;
+}
+
+.problem-slot {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: max-content;
+    padding: 6px 12px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    background: white;
+    cursor: grab;
+    font-family: 'Pixelify Sans', sans-serif;
+    color: var(--dark-green);
 }
 
 .level-content {
@@ -42,11 +157,14 @@
         "available-blocks level-btns"
         "available-blocks terminal"
         "available-blocks level-feedback";
-
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .level-feedback {
     grid-area: level-feedback;
+    margin: 10px;
 }
 
 .level-btns {
@@ -54,11 +172,40 @@
     flex-direction: row;
     gap: 10px;
     grid-area: level-btns;
+    padding: 10px;
+}
+
+.level-btns button, .level-feedback button {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 0.5px solid var(--dark-green);
+    color: var(--dark-green);
+    margin-top: 10px;
+    width: auto;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.3s, color 0.3s;
+}
+
+.level-btns button:hover, .level-feedback button:hover {
+    background: var(--dark-green);
+    color: #FFF;
 }
 
 .terminal {
     grid-area: terminal;
     width: 500px;
-    height: 300px;
-    border: 1px solid black;
+    height: 200px;
+    overflow-y: scroll;
+    border: 1px solid gray;
+    border-radius: 4px;
+    background: white;
+    cursor: grab;
+    font-family: 'Pixelify Sans', sans-serif;
+    color: var(--dark-green);
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
 }

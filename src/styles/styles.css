@@ -1,13 +1,12 @@
-div.background-image-container {
-  background-image: url('../assets/Grass.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  height:600px;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0;
+:root {
+  --light-green: #EAF3DE;
+  --dark-green: #97C459;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
 }
 

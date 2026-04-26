@@ -5,6 +5,7 @@ import HomeButton from '../assets/HomeButton.png'
 import StringIntro from '../assets/DialogStringIntro.png'
 import '../styles/styles.css'
 import '../styles/levels.css'
+import Navbar from '../components/NavBar'
 
 const Levels = () => {
     const { section } = useParams();
@@ -19,42 +20,26 @@ const Levels = () => {
     }
 
     return (
-        <div>    
-            {/*home button*/}
-            <Link to="/"> 
+        <div className='levels-page'>              
+            <Navbar />
+            <div className = "levels-container">
+                <h1>Section {section}</h1>
                 <img
-                    src= {HomeButton}
-                    style={{
-                        height:68,
-                        width:68,
-                        display: 'flex',
-                        alignItems: 'start'
-                    }}
+                    className = "levels-dialogue"
+                    src= {StringIntro}
                     alt = "Home"
                 />
-            </Link>
-
-            <div className = "background-image-container"> {/*title and description*/}
-                <h1>Section {section}</h1>
                 {[1, 2, 3].map(level => (
                     <button
                         key={level}
                         onClick={() => !isLocked(level) && navigate(`/level/${section}/${level}`)}
                         disabled={isLocked(level)}
-                        className='level-btn'
+                        className='levels-btn'
                     >
                         Level {level}
                         {gameState.sections[section].levels[level].completed && ' (Completed)'}
                     </button>
                 ))}
-                <img
-                    src= {StringIntro}
-                    style={{
-                        display: 'flex',
-                        alignItems: 'start'
-                    }}
-                    alt = "Home"
-                />
             </div>
         </div>
     )

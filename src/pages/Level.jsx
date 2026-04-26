@@ -83,9 +83,9 @@ const Level = () => {
       
       <div className='level-header'>
         <Navbar />
-        <div className='level-title'>
-          <p>Section {section} - Level {level}</p>
-          <p>{levelData.prompt}</p>
+        <div className='level-info'>
+          <p className='level-title'>Section {section} - Level {level}</p>
+          <p className='level-prompt'>{levelData.prompt}</p>
         </div>
        
       </div>

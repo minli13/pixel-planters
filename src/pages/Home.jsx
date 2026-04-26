@@ -6,27 +6,22 @@ import {useState} from 'react'
 import Play from '../assets/PlayButtonUp.png'
 import PlayDown from '../assets/PlayButtonDown.png'
 import '../styles/styles.css'
+import '../styles/home.css'
 
 const Home = () => { //Homepage - play button
 
   return (
-    <div>
-      <h1>Pixel Planters</h1>
-      <h2>Grow your coding skills!</h2>
+    <div className = "home-container background-image-container">
       <div className = "background-image-container">
+        <h1>Pixel Planters</h1>
+        <h2>Grow your coding skills!</h2>
         <Link to="/gameSlots"> 
           <img
+            className='play-btn'
             src= {Play}
-            style={{
-              height:96,
-              width:288,
-              marginTop: 500
-            }}
             alt = "Play"
             />
         </Link>
-      </div>
-      <div>
         <button>
           Options
         </button>
