@@ -43,6 +43,7 @@ const Levels = () => {
                         className='levels-btn'
                     >
                         Level {level}
+                     
                         {currentSave.sections[section].levels[level].completed && ' (Completed)'}
                     </button>
                 ))}

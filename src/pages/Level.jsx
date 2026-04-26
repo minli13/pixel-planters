@@ -39,26 +39,43 @@ const Level = () => {
   }
 
   function handleRun() {
-    const current = userBlocks.filter(Boolean).join(' ').trim();
-    setCodeToDisplay(current);
+    const breakIndex = levelData.solution.indexOf('\n');
+    
+    if (breakIndex !== -1) {
+      const line1 = userBlocks.slice(0, breakIndex).filter(Boolean).join(' ');
+      const line2 = userBlocks.slice(breakIndex).filter(Boolean).join(' ');
+      const current = `${line1}\n${line2}`;
+      setCodeToDisplay(current);
+    } else {
+      const current = userBlocks.filter(Boolean).join(' ').trim();
+      setCodeToDisplay(current);
+    }
+
     setIsRunning(false);
     setTimeout(() => setIsRunning(true), 0);
   }
 
   function handleCheck() {
-    if (userBlocks.length !== levelData.snippetSlots) {
+    const breakIndex = levelData.solution.indexOf('\n');
+    const alignedUser = breakIndex !== -1
+      ? [
+          ...userBlocks.slice(0, breakIndex),
+          '\n',
+          ...userBlocks.slice(breakIndex)
+        ]
+      : userBlocks;
+
+    const isCorrect = alignedUser.every((block, i) => block === levelData.solution[i]);
+
+    if (alignedUser.length !== levelData.solution.length) {
       setFeedback('incomplete');
       return;
     }
 
-    const isCorrect = userBlocks.every(
-      (block, index) => block === levelData.solution[index]
-    );
-
     if (isCorrect) {
       setFeedback('correct');
       completeLevel(Number(section), Number(level));
-      setCodeToDisplay(levelData.codeToRun); // run what should be shown
+      setCodeToDisplay(levelData.codeToRun);
       setIsRunning(false);
       setTimeout(() => setIsRunning(true), 0);
     } else {
@@ -66,18 +83,18 @@ const Level = () => {
     }
   }
 
-function handleNext() {
-  const nextLevel = Number(level) + 1;
-  const nextSection = Number(section) + 1;
+  function handleNext() {
+    const nextLevel = Number(level) + 1;
+    const nextSection = Number(section) + 1;
 
-  if (Number(level) < 3) {
-    navigate(`/level/${section}/${nextLevel}`);
-  } else if (Number(section) < 2) {
-    navigate(`/level/${nextSection}/1`);
-  } else {
-    navigate('/garden');
+    if (Number(level) < 3) {
+      navigate(`/level/${section}/${nextLevel}`);
+    } else if (Number(section) < 2) {
+      navigate(`/level/${nextSection}/1`);
+    } else {
+      navigate('/garden');
+    }
   }
-}
 
 
   return (
@@ -98,6 +115,7 @@ function handleNext() {
           snippetSlots={levelData.snippetSlots}
           onChange={handleChange}
           disabled={!ready}
+          lines={levelData.lines}
         />
         
         {/* user hasn't checked */}
