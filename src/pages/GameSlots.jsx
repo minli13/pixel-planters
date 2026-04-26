@@ -2,8 +2,11 @@ import React from 'react'
 import { useState } from 'react'
 import { useGarden } from '../helpers/GardenContext'
 import { useNavigate } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import HomeButton from '../assets/HomeButton.png'
 import '../styles/slots.css'
 import SlotCard from '../components/SlotCard'
+import '../styles/styles.css'
 
 const GameSlots = () => {
     const { 
@@ -49,8 +52,9 @@ const GameSlots = () => {
 
     return (
         <div className='slot-saves'>
-            <p>YOUR GARDEN SAVES</p>
-            <div className='slot-container'>
+            {/* <p>YOUR GARDEN SAVES</p> */}
+        
+            <div className='slot-container'> {/*contains game slots*/}
                 {[0, 1, 2].map(i => (
                     <SlotCard
                         key={i}
@@ -66,7 +70,7 @@ const GameSlots = () => {
                         onDelete={() => deleteSlot(i)}
                     />
                 ))}
-             </div>
+            </div>
         </div>
     )
 }

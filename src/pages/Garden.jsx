@@ -61,14 +61,14 @@ const Garden = () => {
         saveToSlot(activeSlot, gameState);
     }
     return (
+        
         <div className='garden-container'>
             <div>
                 <NavBar />
-                <button onClick={handleSave}>Save</button> {/* we need a save button */}
             </div>
             <div className='garden'>
                  {/*title*/}
-                <h1>Your Garden</h1>
+                {/* <h1>Your Garden</h1> */}
 
                 {/*dialog*/}
                 <div className='garden-dialogue'> 
@@ -94,6 +94,7 @@ const Garden = () => {
                 </div>
             </div>
         </div>
+
     )
 }
 

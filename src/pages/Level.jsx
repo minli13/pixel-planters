@@ -4,9 +4,11 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useGarden } from '../helpers/GardenContext'
 import { LEVEL_CONTENT } from '../data/levelContent'
 import CodeProblem from '../components/CodeProblem'
-import '../styles/levels.css'
 import Terminal from '../components/Terminal'
 import Navbar from '../components/NavBar'
+import '../styles/levels.css'
+import '../styles/styles.css'
+
 
 const Level = () => {
   const { section, level } = useParams(); // from url
@@ -79,7 +81,7 @@ function handleNext() {
 
 
   return (
-    <div className='level-container'>
+    <div className='level-container background-plain'>
       
       <div className='level-header'>
         <Navbar />

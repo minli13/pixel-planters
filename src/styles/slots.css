@@ -15,6 +15,10 @@
     align-items: center;
     font-family: 'Pixelify Sans', sans-serif;
     color: var(--dark-green);
+    background-image: url('../assets/SlotPage.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .slot-saves>p {
@@ -30,6 +34,7 @@
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
+    margin-top: 200px;
 }
 
 .slot {
@@ -37,7 +42,7 @@
     font-family: 'Pixelify Sans', sans-serif;
     color: var(--dark-green);
     width: 200px;
-    height: 300px;
+    height: 250px;
     border: 0.5px solid var(--dark-green);
     border-radius: 4px;
     padding: 8px;

@@ -7,9 +7,14 @@
     height: 100vh;
     font-family: 'Pixelify Sans', sans-serif;
     color: #FFF;
+    background-image: url('../assets/Garden.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .garden {
+    padding-top: 180px;
     width: 100%;
     min-width: max-content;
     display: flex;
@@ -17,10 +22,6 @@
     font-size: 32px;
     align-items: center;
     gap: 10px;
-    background-image: url('../assets/Grass.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
 }
 
 .garden-dialogue {

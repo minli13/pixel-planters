@@ -2,8 +2,10 @@ import React from 'react'
 import { useGarden } from '../helpers/GardenContext'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import HomeButton from '../assets/HomeButton.png'
+import GarButton from '../assets/GardenButton.png'
 import StringIntro from '../assets/DialogStringIntro.png'
 import '../styles/styles.css'
+import VariableIntro from '../assets/DialogVariableIntro.png'
 import '../styles/levels.css'
 import Navbar from '../components/NavBar'
 
@@ -23,6 +25,7 @@ const Levels = () => {
     }
 
     return (
+        
         <div className='levels-page'>              
             <Navbar />
             <div className = "levels-container">
@@ -45,6 +48,8 @@ const Levels = () => {
                 ))}
             </div>
         </div>
+        
+    
     )
 }
 

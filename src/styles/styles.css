@@ -10,3 +10,33 @@ body {
   width: 100vw;
 }
 
+
+/* .background-garden{
+  background-image: url('../assets/Garden.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:780px;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+} */
+/* .background-slot{
+  background-image: url('../assets/SlotPage.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:780px;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+} */
+/* .background-plain{
+  background-image: url('../assets/PlainBg.png');
+  background-size: cover;
+  height:780px;
+} */

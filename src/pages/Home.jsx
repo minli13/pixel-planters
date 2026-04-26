@@ -11,10 +11,9 @@ import '../styles/home.css'
 const Home = () => { //Homepage - play button
 
   return (
-    <div className = "home-container background-image-container">
-      <div className = "background-image-container">
-        <h1>Pixel Planters</h1>
-        <h2>Grow your coding skills!</h2>
+    <div className = "background-image-container ">
+        {/* <h1>Pixel Planters</h1>
+        <h2>Grow your coding skills!</h2> */}
         <Link to="/gameSlots"> 
           <img
             className='play-btn'
@@ -22,11 +21,10 @@ const Home = () => { //Homepage - play button
             alt = "Play"
             />
         </Link>
-        <button>
-          Options
-        </button>
-      </div>
+ 
     </div>
+ 
+
   )
 }
 
